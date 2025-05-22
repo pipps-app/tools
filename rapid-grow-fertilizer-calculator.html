@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapid Grow Fertilizer Calculator</title>
+    <style>
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        #result {
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+
+        .formula-title {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .ingredient-label {
+            margin-top: 5px;
+        }
+
+        .usage-instructions {
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function calculateFormula() {
+            var choice = parseInt(document.getElementById("formulaChoice").value);
+            var totalQuantity = parseFloat(document.getElementById("totalQuantity").value);
+
+            if (isNaN(totalQuantity) || totalQuantity < 1) {
+                alert("Attention: Please enter a valid quantity greater than or equal to 1.");
+                return;
+            }
+
+            var result;
+            switch (choice) {
+                case 1:
+                    result = formulaGeneralFertilizingLight(totalQuantity);
+                    break;
+                case 2:
+                    result = formulaGeneralFertilizingHeavy(totalQuantity);
+                    break;
+                case 3:
+                    result = formulaSoilDrench(totalQuantity);
+                    break;
+                case 4:
+                    result = formulaFoliarFeedSpray(totalQuantity);
+                    break;
+                case 5:
+                    result = formulaOrchidFertilizing(totalQuantity);
+                    break;
+                case 6:
+                    result = formulaCompostSupplement(totalQuantity);
+                    break;
+                default:
+                    alert("Invalid choice. Please choose a valid formula.");
+                    return;
+            }
+
+            displayResult(result, totalQuantity);
+        }
+
+        function formulaGeneralFertilizingLight(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(15 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "General Fertilizing (Light feeders)",
+                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
+                "Units": {"Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Feed every 2-3 weeks."
+            };
+        }
+
+        function formulaGeneralFertilizingHeavy(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(15 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "General Fertilizing (Heavy feeders)",
+                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
+                "Units": {"Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Feed every 2-3 weeks."
+            };
+        }
+
+        function formulaSoilDrench(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(37.5 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "Soil Drench",
+                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
+                "Units": {"Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Apply to the roots monthly during the growing season."
+            };
+        }
+
+        function formulaFoliarFeedSpray(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(15 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "Foliar Feed Spray",
+                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
+                "Units": {"Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Apply it by misting during evening or early morning."
+            };
+        }
+
+        function formulaOrchidFertilizing(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(2.5 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "Orchid Fertilizing",
+                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
+                "Units": {"Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Apply to roots. Frequency of application depends on orchid type."
+            };
+        }
+
+        function formulaCompostSupplement(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(120 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "Compost Supplement",
+                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
+                "Units": {"Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Add to compost pile to act as a catalyst by aiding heating of the pile."
+            };
+        }
+
+        function onEnterKeyPress(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission
+                calculateFormula();
+            }
+        }
+
+        function displayResult(result, totalQuantity) {
+            var formulaTitle = "<h2 class='formula-title'>" + result["Formula"] + "</h2>";
+            var ingredientLabel = "<div class='ingredient-label'>Ingredients for " + totalQuantity.toFixed(2) + " mls:</div>";
+            var resultText = formulaTitle + ingredientLabel;
+
+            for (var ingredient in result["Ingredients"]) {
+                resultText += "<p>" + ingredient + ": " + result["Ingredients"][ingredient].toFixed(2) + " " + result["Units"][ingredient] + "</p>";
+            }
+
+            var usageInstructions = "<div class='usage-instructions'><strong>Usage Instructions:</strong> " + result["Usage"] + "</div>";
+
+            document.getElementById("result").innerHTML = resultText + usageInstructions;
+        }
+    </script>
+</head>
+<body>
+
+<div style="text-align:center; margin-bottom: 20px;">
+    <a href="https://pipps.app" target="_blank" style="text-decoration:none;">
+        <img src="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png" 
+             alt="PIPPS Smart Apps Logo" 
+             style="max-height:50px; margin-bottom:8px;"><br>
+        <span style="font-size:1.1em; color:#2c3e50;">PIPPS Smart Apps</span>
+    </a>
+</div>
+
+    <h1>Rapid Grow Fertilizer Calculator</h1>
+    <label for="formulaChoice">Choose a formula:</label>
+    <select id="formulaChoice">
+        <option value="1">General Fertilizing (Light feeders)</option>
+        <option value="2">General Fertilizing (Heavy feeders)</option>
+        <option value="3">Soil Drench</option>
+        <option value="4">Foliar Feed Spray</option>
+        <option value="5">Orchid Fertilizing</option>
+        <option value="6">Compost Supplement</option>
+    </select>
+
+    <br><br>
+
+    <label for="totalQuantity">Enter total quantity (mls):</label>
+    <input type="number" id="totalQuantity" step="any" onkeyup="onEnterKeyPress(event)" pattern="[0-9]*">
+
+    <br><br>
+
+    <button onclick="calculateFormula()">Calculate</button>
+
+    <br><br>
+
+    <div id="result"></div>
+
+<footer style="margin-top:40px; padding:20px; text-align:center; font-size:0.9em; background:#f0f0f0; border-top:1px solid #ccc;">
+    <p><strong>More smart tools for small businesses:</strong> <a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">pipps.app</a></p>
+    <p style="color:#666;">&copy; 2025 PIPPS Smart Apps · Built by <a href="https://pipps.app" target="_blank" style="color:#666;">JCEpiphany</a></p>
+</footer>
+
+</body>
+</html>
