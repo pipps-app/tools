@@ -5,32 +5,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rapid Grow Fertilizer Calculator</title>
     <style>
-        h1 {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 900px;
+            background-color: #f9f9f9;
             color: #333;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .app-logo {
+            max-height: 50px;
+            width: auto;
+            margin-bottom: 8px;
+        }
+        .app-brand {
+            font-size: 1.0em;
+            color: #555;
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
         }
 
         h2 {
             font-weight: bold;
             font-size: 1.2em;
             margin-top: 10px;
+            color: #2c3e50;
         }
 
         #result {
-            margin-top: 10px;
-            font-size: 1.1em;
+            margin-top: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .formula-title {
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.3em;
+            color: #27ae60;
+            margin-bottom: 10px;
         }
 
         .ingredient-label {
-            margin-top: 5px;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #555;
         }
 
         .usage-instructions {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #e0e0e0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .quick-guide {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #333;
+        }
+        .quick-guide h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #1a73e8;
+            font-size: 1.1em;
+        }
+        .quick-guide p {
+            margin: 5px 0;
+        }
+        .quick-guide strong {
+            color: #0056b3;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        select, input[type="number"] {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        input[type="number"] {
+            width: 150px; /* Adjust width for number input */
+        }
+
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
             margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            background-color: #f0f0f0;
+            border-top: 1px solid #e0e0e0;
+            border-radius: 5px;
+            color: #666;
+        }
+        footer a {
+            color: #2c3e50;
+            text-decoration: underline;
+        }
+        footer a:hover {
+            color: #1a252f;
         }
     </style>
     <script>
@@ -77,9 +197,9 @@
             var water = totalQuantity;
             return {
                 "Formula": "General Fertilizing (Light feeders)",
-                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
-                "Units": {"Fertilizer": "ml", "Water": "ml"},
-                "Usage": "Feed every 2-3 weeks."
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Feed every 2-3 weeks, applying to the soil around the base of the plant."
             };
         }
 
@@ -89,9 +209,9 @@
             var water = totalQuantity;
             return {
                 "Formula": "General Fertilizing (Heavy feeders)",
-                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
-                "Units": {"Fertilizer": "ml", "Water": "ml"},
-                "Usage": "Feed every 2-3 weeks."
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Feed every 2-3 weeks, applying to the soil around the base of the plant."
             };
         }
 
@@ -101,9 +221,9 @@
             var water = totalQuantity;
             return {
                 "Formula": "Soil Drench",
-                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
-                "Units": {"Fertilizer": "ml", "Water": "ml"},
-                "Usage": "Apply to the roots monthly during the growing season."
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Apply directly to the roots monthly during the growing season. Ensure thorough saturation of the soil."
             };
         }
 
@@ -113,9 +233,9 @@
             var water = totalQuantity;
             return {
                 "Formula": "Foliar Feed Spray",
-                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
-                "Units": {"Fertilizer": "ml", "Water": "ml"},
-                "Usage": "Apply it by misting during evening or early morning."
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Apply by misting the leaves during evening or early morning to maximize absorption and prevent leaf burn."
             };
         }
 
@@ -125,9 +245,9 @@
             var water = totalQuantity;
             return {
                 "Formula": "Orchid Fertilizing",
-                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
-                "Units": {"Fertilizer": "ml", "Water": "ml"},
-                "Usage": "Apply to roots. Frequency of application depends on orchid type."
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Apply to roots. Frequency depends on orchid type and growing medium (e.g., weekly to monthly). Always flush with plain water occasionally."
             };
         }
 
@@ -137,9 +257,9 @@
             var water = totalQuantity;
             return {
                 "Formula": "Compost Supplement",
-                "Ingredients": {"Fertilizer": fertilizer, "Water": water},
-                "Units": {"Fertilizer": "ml", "Water": "ml"},
-                "Usage": "Add to compost pile to act as a catalyst by aiding heating of the pile."
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Add to compost pile to act as a catalyst by aiding heating of the pile, accelerating decomposition. Mix thoroughly."
             };
         }
 
@@ -156,7 +276,7 @@
             var resultText = formulaTitle + ingredientLabel;
 
             for (var ingredient in result["Ingredients"]) {
-                resultText += "<p>" + ingredient + ": " + result["Ingredients"][ingredient].toFixed(2) + " " + result["Units"][ingredient] + "</p>";
+                resultText += "<p>" + ingredient + ": <strong>" + result["Ingredients"][ingredient].toFixed(2) + " " + result["Units"][ingredient] + "</strong></p>";
             }
 
             var usageInstructions = "<div class='usage-instructions'><strong>Usage Instructions:</strong> " + result["Usage"] + "</div>";
@@ -167,16 +287,24 @@
 </head>
 <body>
 
-<div style="text-align:center; margin-bottom: 20px;">
-    <a href="https://pipps.app" target="_blank" style="text-decoration:none;">
-        <img src="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png" 
-             alt="PIPPS Smart Apps Logo" 
-             style="max-height:50px; margin-bottom:8px;"><br>
-        <span style="font-size:1.1em; color:#2c3e50;">PIPPS Smart Apps</span>
+<div class="app-header">
+    <a href="https://pipps.app" target="_blank">
+        <img src="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png"
+             alt="PIPPS Smart Apps Logo" class="app-logo">
     </a>
+    <h2 class="app-brand">PIPPS Smart Apps Presents:</h2>
 </div>
 
     <h1>Rapid Grow Fertilizer Calculator</h1>
+
+    <div class="quick-guide">
+        <h3>Quick Guide:</h3>
+        <p>1. <strong>Select a Formula:</strong> Choose the desired application method from the dropdown menu.</p>
+        <p>2. <strong>Enter Quantity:</strong> Input the total volume of fertilizer solution you need to prepare (in milliliters).</p>
+        <p>3. <strong>Calculate:</strong> Click the 'Calculate' button or press Enter.</p>
+        <p>4. <strong>View Results:</strong> The required amounts of fertilizer and water, along with <strong>specific usage instructions</strong> for your chosen formula, will appear below.</p>
+    </div>
+
     <label for="formulaChoice">Choose a formula:</label>
     <select id="formulaChoice">
         <option value="1">General Fertilizing (Light feeders)</option>
@@ -187,22 +315,21 @@
         <option value="6">Compost Supplement</option>
     </select>
 
-    <br><br>
+    <br>
 
     <label for="totalQuantity">Enter total quantity (mls):</label>
-    <input type="number" id="totalQuantity" step="any" onkeyup="onEnterKeyPress(event)" pattern="[0-9]*">
+    <input type="number" id="totalQuantity" step="any" onkeyup="onEnterKeyPress(event)" placeholder="e.g., 3785">
 
-    <br><br>
+    <br>
 
     <button onclick="calculateFormula()">Calculate</button>
-
-    <br><br>
 
     <div id="result"></div>
 
 <footer style="margin-top:40px; padding:20px; text-align:center; font-size:0.9em; background:#f0f0f0; border-top:1px solid #ccc;">
-    <p><strong>More smart tools for small businesses:</strong> <a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">pipps.app</a></p>
-    <p style="color:#666;">&copy; 2025 PIPPS Smart Apps · Built by <a href="https://pipps.app" target="_blank" style="color:#666;">JCEpiphany</a></p>
+    <p><strong>More smart tools for small businesses:</strong></p>
+    <p><a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">PIPPS Smart Apps Home</a> | <a href="https://jcepiphany.com/" target="_blank" style="color:#2c3e50; text-decoration:underline;">J.C. Epiphany Home</a></p>
+    <p style="color:#666;">© 2025 PIPPS Smart Apps · Built by <a href="https://pipps.app" target="_blank" style="color:#666;">JCEpiphany</a> · Email: info@pipps.app</p>
 </footer>
 
 </body>
