@@ -1,7 +1,7 @@
 # PIPPS Smart Tools – Free Business Calculators
 
-[![GitHub Pages Status](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME/workflows/Deploy%20GitHub%20Pages/badge.svg)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME/actions)
-*(Note: To make the badge work, replace `YOUR_USERNAME` and `YOUR_REPOSITORY_NAME` with your actual GitHub username and repository name. This badge shows the status of your last GitHub Pages deployment.)*
+[![GitHub Pages Status](https://github.com/pipps-app/tools/workflows/Deploy%20GitHub%20Pages/badge.svg)](https://github.com/pipps-app/tools/actions)
+*(This badge shows the status of your last GitHub Pages deployment.)*
 
 Free, easy-to-use calculators for small business makers, entrepreneurs, and organic gardeners. PIPPS Smart Tools provides essential manufacturing and farming tools designed to simplify complex calculations and help you innovate your small business.
 
