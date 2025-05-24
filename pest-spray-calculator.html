@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organic Pest Control Calculator</title>
     <style>
+        body { /* Added to ensure consistency across pages */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1100px; /* Matched paste-dilution for consistency */
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
         h1 {
             color: #333;
             border-bottom: 2px solid #ccc;
             padding-bottom: 10px;
+            text-align: center; /* Centered for consistency with other pages */
+            margin-top: 0;
+            margin-bottom: 15px; /* Added margin */
         }
 
         h2 {
@@ -70,9 +83,31 @@
 
         .disclaimer {
             margin-top: 20px;
+            padding: 12px; /* Added padding for consistency */
+            border: 1px dashed #ccc; /* Added border style for consistency */
+            background-color: #fdfdfd; /* Added background for consistency */
             font-size: 0.9em;
             color: #555;
+            border-radius: 4px; /* Added border-radius */
         }
+        
+        /* New style for Quick Usage Directions */
+        .quick-usage-directions {
+            text-align: left;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            background-color: #f0f8ff; /* Light blue background */
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #d6eaff; /* Light blue border */
+        }
+        .quick-usage-directions p {
+            margin: 3px 0;
+        }
+        .quick-usage-directions strong {
+            color: #2c3e50; /* Stronger color for emphasis */
+        }
+
     </style>
     <script>
         function calculateFormula() {
@@ -253,8 +288,10 @@
                           ${resultDiv.innerHTML}
                       
 <footer style="margin-top:40px; padding:20px; text-align:center; font-size:0.9em; background:#f0f0f0; border-top:1px solid #ccc;">
-    <p><strong>Explore more tools at:</strong> <a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">pipps.app</a></p>
-    <p style="color:#666;">&copy; 2025 PIPPS Smart Apps · Built by <a href="https://pipps.app" target="_blank" style="color:#666;">JCEpiphany</a></p>
+    <p style="color:#666;">© 2025 PIPPS Smart Apps</p>
+    <p><a href="https://jcepiphany.com/" target="_blank" style="color:#2c3e50; text-decoration:underline;">J.C EPiphany Home</a></p>
+    <p><a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">PIPPS Smart Apps Home</a></p>
+    <p><a href="mailto:info@pipps.app" style="color:#2c3e50; text-decoration:underline;">Email info@pipps.app</a></p>
 </footer>
 
 </body>
@@ -290,6 +327,14 @@
 
     <h1>Organic Pest Control Calculator</h1>
 
+    <div class="quick-usage-directions">
+        <p><strong>Quick Usage Directions:</strong></p>
+        <p>1. <strong>Select a Formula:</strong> Choose the pest spray formula that best suits your needs from the dropdown menu.</p>
+        <p>2. <strong>Enter Total Quantity:</strong> Input the desired total volume (in milliliters) of the final spray solution you wish to prepare.</p>
+        <p>3. <strong>Calculate:</strong> Click the 'Calculate Formula' button to get the exact amounts of each ingredient required.</p>
+        <p>4. <strong>View Results:</strong> The calculated ingredient quantities will appear below. Refer to the 'Preparation Guide' for detailed instructions.</p>
+    </div>
+
     <div class="disclaimer">
         <p><strong>Disclaimer:</strong> This tool provides general guidance on organic pest control mixtures and is intended for informational purposes only. Always consult with a certified professional before applying any pest control solutions. The results may vary based on specific conditions and individual circumstances.</p>
     </div>
@@ -319,8 +364,10 @@
 
 
 <footer style="margin-top:40px; padding:20px; text-align:center; font-size:0.9em; background:#f0f0f0; border-top:1px solid #ccc;">
-    <p><strong>Explore more tools at:</strong> <a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">pipps.app</a></p>
-    <p style="color:#666;">&copy; 2025 PIPPS Smart Apps · Built by <a href="https://pipps.app" target="_blank" style="color:#666;">JCEpiphany</a></p>
+    <p style="color:#666;">© 2025 PIPPS Smart Apps</p>
+    <p><a href="https://jcepiphany.com/" target="_blank" style="color:#2c3e50; text-decoration:underline;">J.C EPiphany Home</a></p>
+    <p><a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">PIPPS Smart Apps Home</a></p>
+    <p><a href="mailto:info@pipps.app" style="color:#2c3e50; text-decoration:underline;">Email info@pipps.app</a></p>
 </footer>
 
 </body>
