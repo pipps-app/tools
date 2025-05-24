@@ -29,7 +29,7 @@ Visit the live site to use the calculators directly: [https://pipps-app.github.i
 ## More Resources & Contact
 
 *   **PIPPS Smart Apps Home:** [https://pipps.app](https://pipps.app)
-*   **J.C EPiphany Home:** [https://jcepiphany.com/](https://jcepiphany.com/)
+*   **J.C Epiphany Home:** [https://jcepiphany.com/](https://jcepiphany.com/)
 *   **Email:** [info@pipps.app](mailto:info@pipps.app)
 
 ## License
