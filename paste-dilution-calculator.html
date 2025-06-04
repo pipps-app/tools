@@ -1,8 +1,10 @@
+--- START OF FILE paste-dilution-calculator.html ---
+
 <!DOCTYPE html>
 
 <html>
 <head>
-<title>Soap Paste Dilution Calculator - PIPPS Smart Apps (Free Version)</title>
+<title>Castile Soap Paste Dilution Calculator - PIPPS Smart Apps (Free Version)</title>
 <style>
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,8 +31,18 @@ body {
     margin-top: 0;
 }
 
+/* Style for the new intro paragraph */
+.intro-paragraph {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    font-size: 1em;
+    line-height: 1.6;
+    color: #444;
+    text-align: center;
+}
+
 .short-instructions {
-text-align: left; /\* Align text left for numbered list */
+text-align: left; /* Align text left for numbered list */
 font-size: 0.9em;
 margin-bottom: 15px;
 background-color: #f0f8ff;
@@ -42,7 +54,7 @@ border: 1px solid #d6eaff;
 margin: 3px 0;
 }
 .short-instructions a {
-color: #0056b3; /* Standard link color \*/
+color: #0056b3; /* Standard link color */
 text-decoration: underline;
 }
 .short-instructions a\:hover {
@@ -272,6 +284,39 @@ margin-bottom: 3px;
 }
 .required-asterisk { color: red; margin-left: 2px; }
 
+/* Styles for the new CTA */
+.buy-cta {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #c8e6c9; /* Light green border, matching fertilizer CTA */
+    background-color: #e8f5e9; /* Light green background, matching fertilizer CTA */
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.buy-cta p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: #388e3c; /* Darker green for text, matching fertilizer CTA */
+}
+.buy-cta p strong {
+    color: #1b5e20; /* Even darker green for strong text, matching fertilizer CTA */
+}
+.buy-cta a {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #4CAF50; /* Green CTA button, matching fertilizer CTA */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+.buy-cta a:hover {
+    background-color: #45a049;
+}
+
 @media (max-width: 960px) {
 .main-layout {
 flex-direction: column;
@@ -289,7 +334,7 @@ min-width: auto;
 
 @media print {
 body { font-size: 12pt; max-width: none; box-shadow: none;}
-.app-header, .short-instructions, .user-guide, .buttons-container button#printButton, .phase-button-container button, h1, .calculator-main-column h2, .disclaimer, .summary-sidebar { display: none; }
+.app-header, .short-instructions, .user-guide, .buttons-container button#printButton, .phase-button-container button, h1, .calculator-main-column h2, .disclaimer, .summary-sidebar, .buy-cta { display: none; } /* Hide CTA on print */
 .calculator-main-column { background-color: transparent; box-shadow: none; padding: 0; }
 .main-layout { display: block; }
 table, th, td { border: 1px solid #666; font-size: 10pt; padding: 5px;}
@@ -299,7 +344,6 @@ button { display\:none; }
 </head>
 <body>
 
-```
 <div class="app-header">
     <img src="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png" alt="PIPPS Smart Apps Logo" class="app-logo">
     <h2 class="app-brand">PIPPS Smart Apps Presents:</h2>
@@ -307,7 +351,12 @@ button { display\:none; }
 
 <div class="main-layout">
     <div class="calculator-main-column">
-        <h1>Soap Paste Dilution Calculator</h1>
+        <h1>Castile Soap Paste Dilution Calculator</h1>
+        <!-- Introduction Paragraph -->
+        <p class="intro-paragraph">
+            For <strong>advanced liquid castile soap makers</strong> and small businesses, this calculator takes the guesswork out of transforming concentrated soap paste into perfectly diluted liquid soap. Ensure consistent product strength, ideal viscosity, and precise incorporation of additives like glycerin and preservatives for professional-quality liquid soaps.
+        </p>
+
         <div class="short-instructions">
             <p>1. Complete Phase 1 inputs & click 'Calculate Phase 1'.</p>
             <p>2. Add initial water to paste.</p>
@@ -433,6 +482,13 @@ button { display\:none; }
 
 </div>
 
+<!-- Always visible CTA for purchasing soap paste -->
+<div class="buy-cta">
+    <p><strong>Looking for high-quality Concentrated Castile Soap Paste?</strong></p>
+    <p>Visit our official Shopify store to explore our premium soap paste, perfect for dilution into liquid soap and other products:</p>
+    <p><a href="https://jcepiphany.myshopify.com/collections/concentrated-castile-soap" target="_blank">Shop Castile Soap Paste Now</a></p>
+</div>
+
 <div class="disclaimer">
     <h4>Disclaimer</h4>
     <p>This Soap Paste Dilution Calculator by PIPPS Smart Apps is provided for informational and estimation purposes only. The calculations are based on the data you input and standard formulas. PIPPS Smart Apps makes no warranties, express or implied, regarding the accuracy, completeness, reliability, or suitability of this calculator or the information generated by it.</p>
@@ -446,188 +502,10 @@ button { display\:none; }
     </p>
     <p>This calculator does not substitute for professional advice from a qualified chemist, cosmetic formulator, or experienced soap maker. PIPPS Smart Apps shall not be liable for any errors, omissions, or for any loss or damage of any kind incurred as a result of the use of this calculator or reliance on any information provided herein. Use at your own risk.</p>
 </div>
-```
-
-<script>
-  let phase1Results = {
-      netSoapPaste: 0,
-      targetTotalWater: 0,
-      targetDilutedSoapWeight: 0,
-      initialWaterAdded: 0
-  };
-
-  function el(id) { return document.getElementById(id); }
-  function val(id) {
-      const element = el(id);
-      return element ? (parseFloat(element.value) || 0) : 0;
-  }
-  function setHtml(id, value, decimals = 2) {
-      const element = el(id);
-      if (element) {
-        element.innerHTML = isNaN(value) ? (0).toFixed(decimals) : value.toFixed(decimals);
-      }
-  }
-  function setLabel(id, text) {
-      const element = el(id);
-      if(element) element.textContent = text;
-  }
-
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' && event.target.tagName === 'INPUT' && 
-        (event.target.type === 'number' || event.target.type === 'checkbox')) {
-        
-        event.preventDefault();
-
-        const phase = event.target.dataset.phase;
-
-        if (phase === '1') {
-            calculatePhase1();
-        } else if (phase === '2') {
-            calculatePhase2();
-        }
-    }
-  });
-
-  function calculatePhase1() {
-    const totalWeight = val("totalWeight");
-    const containerW = val("containerWeight");
-
-    let netSoapPaste = totalWeight;
-    if (containerW > 0 && totalWeight >= containerW) {
-        netSoapPaste = totalWeight - containerW;
-    }
-    if (netSoapPaste < 0) netSoapPaste = 0;
-
-
-    const soapStrengthPercent = val("soapStrength");
-    const soapStrength = soapStrengthPercent > 0 ? soapStrengthPercent / 100 : 0.33;
-    const targetTotalWater = netSoapPaste > 0 && soapStrength > 0 ? netSoapPaste * (1 / soapStrength - 1) : 0;
-    const addAllWaterChecked = el("addAllWater").checked; 
-    const waterPortion = addAllWaterChecked ? 1.0 : 0.8;
-    const waterToAddInitially = targetTotalWater * waterPortion;
-
-    setHtml("totalPaste", netSoapPaste);
-    setHtml("totalWater", targetTotalWater);
-    setHtml("waterToAdd", waterToAddInitially);
-    setLabel("waterToAddPercentLabel", addAllWaterChecked ? "(100% of total water)" : "(80% of total water)");
-
-    phase1Results.netSoapPaste = netSoapPaste;
-    phase1Results.targetTotalWater = targetTotalWater;
-    phase1Results.targetDilutedSoapWeight = netSoapPaste + targetTotalWater;
-    phase1Results.initialWaterAdded = waterToAddInitially;
-
-    setHtml("summaryTotalPaste", phase1Results.netSoapPaste);
-    setHtml("summaryTotalWater", phase1Results.targetTotalWater);
-    setHtml("summaryTargetDilutedSoap", phase1Results.targetDilutedSoapWeight);
-
-    setHtml("postDilTotalPasteWater", 0);
-    setHtml("waterToAddPostDil", 0);
-    setHtml("glycerinAmount", 0);
-    setHtml("preservativeAmount", 0, 4);
-    setHtml("thickenerAmount", 0);
-    setHtml("fragranceAmount", 0);
-    setHtml("summaryGlycerinAmount", 0);
-    setHtml("summaryPreservativeAmount", 0, 4);
-    setHtml("summaryThickenerAmount", 0);
-    setHtml("summaryFragranceAmount", 0);
-    setHtml("summaryFinalWeight", 0);
-  }
-
-  function calculatePhase2() {
-    if (phase1Results.netSoapPaste === 0 && phase1Results.targetTotalWater === 0 && phase1Results.targetDilutedSoapWeight === 0) {
-        alert("Please calculate Phase 1 first to determine Net Soap Paste & Target Water values.");
-        return;
-    }
-
-    const postDilTotalWeight = val("postDilTotalWeight");
-    const postDilContainerWeight = val("postDilContainerWeight");
-    const actualMeasuredDilutedSoap = postDilTotalWeight - postDilContainerWeight;
-    setHtml("postDilTotalPasteWater", actualMeasuredDilutedSoap);
-
-    const safeNetSoapPaste = Math.max(0, phase1Results.netSoapPaste);
-    const waterCurrentlyInBatch = actualMeasuredDilutedSoap - safeNetSoapPaste;
-
-    let waterToAddPostDil = phase1Results.targetTotalWater - waterCurrentlyInBatch;
-    if (waterToAddPostDil < 0) waterToAddPostDil = 0;
-    setHtml("waterToAddPostDil", waterToAddPostDil);
-
-    const baseForAdditives = phase1Results.targetDilutedSoapWeight;
-
-    const glycerinPercent = val("glycerinPercent") / 100;
-    const preservativePercent = val("preservativePercent") / 100;
-    const thickenerPercent = val("thickenerPercent") / 100;
-    const fragrancePercent = val("fragrancePercent") / 100;
-
-    const glycerinAmount = baseForAdditives * glycerinPercent;
-    const preservativeAmount = baseForAdditives * preservativePercent;
-    const thickenerAmount = baseForAdditives * thickenerPercent;
-    const fragranceAmount = baseForAdditives * fragrancePercent;
-
-    setHtml("glycerinAmount", glycerinAmount);
-    setHtml("preservativeAmount", preservativeAmount, 4);
-    setHtml("thickenerAmount", thickenerAmount);
-    setHtml("fragranceAmount", fragranceAmount);
-
-    setHtml("summaryGlycerinAmount", glycerinAmount);
-    setHtml("summaryPreservativeAmount", preservativeAmount, 4);
-    setHtml("summaryThickenerAmount", thickenerAmount);
-    setHtml("summaryFragranceAmount", fragranceAmount);
-
-    const finalProductWeight = baseForAdditives + glycerinAmount + preservativeAmount + thickenerAmount + fragranceAmount;
-    setHtml("summaryFinalWeight", finalProductWeight);
-  }
-
-  function resetForm() {
-    el("totalWeight").value = "0";
-    el("containerWeight").value = "0";
-    el("soapStrength").value = "33";
-    el("addAllWater").checked = false;
-    setLabel("waterToAddPercentLabel", "(80% of total water)");
-
-    setHtml("totalPaste", 0);
-    setHtml("totalWater", 0);
-    setHtml("waterToAdd", 0);
-
-    el("postDilTotalWeight").value = "0";
-    el("postDilContainerWeight").value = "0";
-    el("glycerinPercent").value = "0.53";
-    el("preservativePercent").value = "0.0075";
-    el("thickenerPercent").value = "0.75";
-    el("fragrancePercent").value = "1";
-
-    setHtml("postDilTotalPasteWater", 0);
-    setHtml("waterToAddPostDil", 0);
-    setHtml("glycerinAmount", 0);
-    setHtml("preservativeAmount", 0, 4);
-    setHtml("thickenerAmount", 0);
-    setHtml("fragranceAmount", 0);
-
-    phase1Results = {
-        netSoapPaste: 0,
-        targetTotalWater: 0,
-        targetDilutedSoapWeight: 0,
-        initialWaterAdded: 0
-    };
-
-    setHtml("summaryTotalPaste", 0);
-    setHtml("summaryTotalWater", 0);
-    setHtml("summaryTargetDilutedSoap", 0);
-    setHtml("summaryGlycerinAmount", 0);
-    setHtml("summaryPreservativeAmount", 0, 4);
-    setHtml("summaryThickenerAmount", 0);
-    setHtml("summaryFragranceAmount", 0);
-    setHtml("summaryFinalWeight", 0);
-  }
-
-  window.onload = () => {
-      resetForm();
-  };
-</script>
-
 
 <footer style="margin-top:40px; padding:20px; text-align:center; font-size:0.9em; background:#f0f0f0; border-top:1px solid #ccc;">
     <p><strong>Need more tools?</strong> Visit <a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">pipps.app</a> for free calculators, AI eBooks, and smart business tools.</p>
-    <p style="color:#666;">&copy; 2025 PIPPS Smart Apps · Built by <a href="https://pipps.app" target="_blank" style="color:#666;">JCEpiphany</a></p>
+    <p style="color:#666;">© 2025 PIPPS Smart Apps · Built by <a href="https://pipps.app" target="_blank" style="color:#666;">JCEpiphany</a></p>
 </footer>
 
 </body>
