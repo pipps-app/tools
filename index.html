@@ -1,207 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PIPPS Smart Apps</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9fafb;
-      color: #111827;
-    }
 
-    header {
-      background-color: #4f46e5;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      color: white;
-    }
+    <meta name="description" content="Free business calculators for small business makers and entrepreneurs. Includes soap dilution, organic pest control, and fertilizer mixing tools.">
+    <meta name="keywords" content="soap calculator, pest spray, organic fertilizer, PIPPS Smart Apps, small business tools, JCEpiphany, organic gardening, manufacturing tools, AI tools">
+    <meta name="author" content="PIPPS Smart Apps by JCEpiphany">
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
-    }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="PIPPS Smart Tools – Business Calculators" />
+    <meta property="og:description" content="Free, easy-to-use calculators for soap dilution, pest control, and fertilizers." />
+    <meta property="og:image" content="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png" />
+    <meta property="og:url" content="https://pipps.github.io/tools/" />
+    <meta property="og:type" content="website" />
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PIPPS Smart Tools – Business Calculators" />
+    <meta name="twitter:description" content="Smart business calculators for makers, farmers, and entrepreneurs." />
+    <meta name="twitter:image" content="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png" />
 
-    p.lead {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card-body {
-      padding: 1rem;
-    }
-
-    .card-body h3 {
-      font-size: 1.25rem;
-      margin: 0 0 0.5rem;
-    }
-
-    .card-body p {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      background-color: #111827;
-      color: #d1d5db;
-      padding: 2rem 1rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    a.link-button {
-      display: inline-block;
-      margin-top: 1rem;
-      color: #4f46e5;
-      text-decoration: underline;
-      font-weight: 500;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      .lead {
-        font-size: 1rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>PIPPS Smart Tools – Free Business Calculators</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 900px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        header img {
+            max-height: 60px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .tool {
+            background: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .tool h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .tool p {
+            margin: 5px 0 15px;
+        }
+        .tool a {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #2c3e50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <a href="https://pipps.app" target="_blank">
+            <img src="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png" alt="PIPPS Smart Apps Logo">
+        </a>
+        <h1>PIPPS Smart Business Tools</h1>
+        <p>Free calculators for makers, entrepreneurs, and small business innovators.</p>
+    </header>
 
-  <!-- Header -->
-  <header>
-    <img src="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png " alt="PIPPS Smart Apps Logo" style="max-width: 200px; height: auto;">
-    <h1>PIPPS Smart Apps</h1>
-    <p class="lead">Empowering businesses with intelligent tools and solutions.</p>
-  </header>
+    <div class="tool">
+        <h2>Castile Soap Paste Dilution Calculator</h2>
+        <p>For advanced liquid castile soap makers and small businesses, this calculator takes the guesswork out of transforming concentrated soap paste into perfectly diluted liquid soap. Ensure consistent product strength, ideal viscosity, and precise incorporation of additives like glycerin and preservatives for professional-quality liquid soaps.</p>
+        <a href="paste-dilution.html" target="_blank">Open Calculator</a>
+    </div>
 
-  <!-- Main Content -->
-  <main class="container">
+    <div class="tool">
+        <h2>DIY Pest Spray Calculator</h2>
+        <p>Empower your organic gardening with this DIY calculator, which helps you easily formulate effective, chemical-free pest control sprays using common kitchen ingredients and proven natural recipes. Whether tackling aphids, slugs, or general garden pests, get precise ingredient ratios for a healthier, thriving garden.</p>
+        <a href="pest-spray-calculator.html" target="_blank">Open Calculator</a>
+    </div>
 
-    <!-- Custom Solutions -->
-    <section>
-      <h2 style="text-align:center; margin-bottom: 2rem;">Custom Solutions</h2>
-      <div class="cards">
-        <!-- Landing Page Creator -->
-        <div class="card">
-          <div class="card-body">
-            <h3>Landing Page Creator</h3>
-            <p>*Quick & easy.* Fill out a simple form. Your samples are sent to you. You choose and we publish on your custom `.pipps.app` subdomain or guide you to set up your own domain. From $75 setup + $10/month hosting.</p>
-          </div>
-        </div>
+    <div class="tool">
+        <h2>Rapid Grow Fertilizer Calculator</h2>
+        <p>Achieve optimal plant health and vigorous growth with the Rapid Grow Fertilizer Calculator, specifically designed for our proprietary organic fertilizers. Tailor your liquid fertilizer solutions for various application methods, including soil drench, foliar feeding, and specialized formulas for orchids or compost supplementation. Ensure your plants receive precise, balanced nutrition for maximum vitality.</p>
+        <a href="rapid-grow-fertilizer-calculator.html" target="_blank">Open Calculator</a>
+    </div>
 
-        <!-- Chatbots -->
-        <div class="card">
-          <div class="card-body">
-            <h3>Chatbots</h3>
-            <p>Custom-built chatbots designed and developed by us — tailored to your business needs. Engage customers, answer questions, and collect leads automatically, with no coding required from you.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Coming Soon Section -->
-    <section>
-      <h2 style="text-align:center; margin-bottom: 2rem;">Coming Soon</h2>
-      <div class="cards">
-        <!-- PIPPS Point of Sale -->
-        <div class="card">
-          <div class="card-body">
-            <h3>PIPPS Point of Sale</h3>
-            <p>A fast, web-based POS system that works from any device. Starts at **$14.99/month**, with inventory management coming soon — free for original customers. Built on 25+ years of real-world use, now reimagined as a modern, cloud-ready tool.</p>
-          </div>
-        </div>
-
-        <!-- PIPPS Physician Appointment Scheduler -->
-        <div class="card">
-          <div class="card-body">
-            <h3>PIPPS Physician Appointment Scheduler</h3>
-            <p>Book and manage appointments from any device. Perfect for single or multi-physician practices. Built for simplicity, speed, and reliability by our expert team.</p>
-          </div>
-        </div>
-
-        <!-- PIPPS MakerCalc -->
-        <div class="card">
-          <div class="card-body">
-            <h3>PIPPS MakerCalc</h3>
-            <p>The ultimate cost calculator for product creators. Track ingredients, build complex formulas, and see true costs and profits — all in one intuitive dashboard. Designed to grow your business from small batch to full-scale production.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Free Tools -->
-    <section>
-      <h2 style="text-align:center; margin-bottom: 2rem;">Free Tools</h2>
-      <div class="cards">
-        <!-- Paste Dilution Calculator -->
-        <div class="card">
-          <div class="card-body">
-            <h3>Paste Dilution Calculator</h3>
-            <p>Calculate precise paste dilutions for industrial applications.</p>
-            <a href="https://pipps-app.github.io/tools/paste-dilution-calculator.html " target="_blank" rel="noopener noreferrer" class="link-button">
-              Try the Tool
-            </a>
-          </div>
-        </div>
-
-        <!-- Pest Spray Calculator -->
-        <div class="card">
-          <div class="card-body">
-            <h3>Pest Spray Calculator</h3>
-            <p>Get accurate measurements for pest control treatments.</p>
-            <a href="https://pipps-app.github.io/tools/pest-spray-calculator.html " target="_blank" rel="noopener noreferrer" class="link-button">
-              Try the Tool
-            </a>
-          </div>
-        </div>
-
-        <!-- Rapid Grow Fertilizer Calculator -->
-        <div class="card">
-          <div class="card-body">
-            <h3>Rapid Grow Fertilizer Calculator</h3>
-            <p>Optimize fertilizer usage for faster plant growth.</p>
-            <a href="https://pipps-app.github.io/tools/rapid-grow-fertilizer-calculator.html " target="_blank" rel="noopener noreferrer" class="link-button">
-              Try the Tool
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 PIPPS Smart Apps. All rights reserved.</p>
-  </footer>
-
+    <footer>
+        © 2025 PIPPS Smart Apps · Built by JCEpiphany · <a href="https://pipps.app" target="_blank">Visit pipps.app</a>
+    </footer>
 </body>
 </html>
