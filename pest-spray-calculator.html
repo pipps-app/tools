@@ -1,27 +1,45 @@
+--- START OF FILE pest-spray-calculator.html ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIY Pest Spray Calculator</title> <!-- Changed title here -->
+    <title>DIY Pest Spray Calculator</title>
     <style>
-        body { /* Added to ensure consistency across pages */
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.5;
             margin: 0 auto;
             padding: 20px;
-            max-width: 1100px; /* Matched paste-dilution for consistency */
+            max-width: 1100px;
             background-color: #f9f9f9;
             color: #333;
         }
 
+        .app-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .app-logo {
+            max-height: 50px;
+            width: auto;
+            margin-bottom: 8px;
+        }
+        .app-brand {
+            font-size: 1.0em;
+            color: #555;
+            font-weight: normal;
+            margin-top: 0;
+        }
+
         h1 {
-            color: #333;
+            color: #2c3e50;
             border-bottom: 2px solid #ccc;
             padding-bottom: 10px;
-            text-align: center; /* Centered for consistency with other pages */
+            text-align: center;
             margin-top: 0;
-            margin-bottom: 15px; /* Added margin */
+            margin-bottom: 15px;
         }
 
         h2 {
@@ -83,66 +101,131 @@
 
         .disclaimer {
             margin-top: 20px;
-            padding: 12px; /* Added padding for consistency */
-            border: 1px dashed #ccc; /* Added border style for consistency */
-            background-color: #fdfdfd; /* Added background for consistency */
+            padding: 12px;
+            border: 1px dashed #ccc;
+            background-color: #fdfdfd;
             font-size: 0.9em;
             color: #555;
-            border-radius: 4px; /* Added border-radius */
+            border-radius: 4px;
         }
         
-        /* New style for Quick Usage Directions */
         .quick-usage-directions {
             text-align: left;
             font-size: 0.9em;
             margin-bottom: 15px;
-            background-color: #f0f8ff; /* Light blue background */
+            background-color: #f0f8ff;
             padding: 10px 15px;
             border-radius: 4px;
-            border: 1px solid #d6eaff; /* Light blue border */
+            border: 1px solid #d6eaff;
         }
         .quick-usage-directions p {
             margin: 3px 0;
         }
         .quick-usage-directions strong {
-            color: #2c3e50; /* Stronger color for emphasis */
+            color: #2c3e50;
         }
-        /* Style for the new intro paragraph */
         .intro-paragraph {
             margin-top: 15px;
             margin-bottom: 25px;
             font-size: 1em;
             line-height: 1.6;
             color: #444;
-            text-align: center; /* Centered for consistency */
-        }
-        .buy-cta { /* Added for the CTA section */
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px dashed #e0e0e0;
             text-align: center;
+        }
+
+        /* New styles for Method Descriptions */
+        .method-descriptions {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .method-descriptions h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .method-descriptions ul {
+            list-style: none; /* Remove default bullet points */
+            padding: 0;
+            margin: 0;
+        }
+        .method-descriptions li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .method-descriptions li:last-child {
+            margin-bottom: 0;
+        }
+        .method-descriptions li:before {
+            content: "•"; /* Custom bullet point */
+            color: #2c5f2d; /* Dark green for pest spray */
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        .method-descriptions strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        /* Styles for the CTA */
+        .buy-cta {
+            margin-top: 30px; /* More space for a static CTA */
+            padding: 20px;
+            border: 1px solid #c8e6c9; /* Light green border */
+            background-color: #e8f5e9; /* Light green background */
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 25px; /* Added margin-bottom to separate from next section */
         }
         .buy-cta p {
             margin-bottom: 10px;
             line-height: 1.5;
+            color: #388e3c; /* Darker green for text */
         }
         .buy-cta p strong {
-            color: #2c3e50;
+            color: #1b5e20; /* Even darker green for strong text */
         }
         .buy-cta a {
             display: inline-block;
-            padding: 10px 15px;
-            background-color: #27ae60;
+            padding: 12px 20px;
+            background-color: #4CAF50; /* Green CTA button */
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
             transition: background-color 0.3s ease;
+            margin-top: 15px;
         }
         .buy-cta a:hover {
-            background-color: #229954;
+            background-color: #45a049;
         }
-
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            background-color: #f0f0f0;
+            border-top: 1px solid #e0e0e0;
+            border-radius: 5px;
+            color: #666;
+        }
+        footer a {
+            color: #2c3e50;
+            text-decoration: underline;
+        }
+        footer a:hover {
+            color: #1a252f;
+        }
     </style>
     <script>
         function calculateFormula() {
@@ -281,18 +364,8 @@
                     </p>
                 </div>
             `;
-
-            // New CTA for purchasing fertilizers
-            var buyCTA = `
-                <div class="buy-cta">
-                    <p><strong>Looking for our organic fertilizers?</strong></p>
-                    <p>Explore our full range of <strong>Rapid Grow Organic Fertilizers</strong>, including <strong>Fish Emulsion, Seaweed Extract, and Fish & Seaweed Blend</strong>, on our official Shopify store:</p>
-                    <p><a href="https://jcepiphany.myshopify.com/collections/rapid-grow-organic-liquid-fertilizers" target="_blank">Shop Organic Fertilizers Now</a></p>
-                </div>
-            `;
-
-
-            document.getElementById("result").innerHTML = resultHTML + buyCTA; // Append CTA to results
+            // The CTA is now static, so it's not part of the dynamic result display.
+            document.getElementById("result").innerHTML = resultHTML;
         }
           
           function printResult() {
@@ -326,7 +399,7 @@
     </a>
 </div>
 
-                          <h1>DIY Pest Spray Calculator</h1> <!-- Renamed title for printout -->
+                          <h1>DIY Pest Spray Calculator</h1>
                           ${resultDiv.innerHTML}
                       
 <footer style="margin-top:40px; padding:20px; text-align:center; font-size:0.9em; background:#f0f0f0; border-top:1px solid #ccc;">
@@ -367,7 +440,7 @@
     </a>
 </div>
 
-    <h1>DIY Pest Spray Calculator</h1> <!-- Changed main heading -->
+    <h1>DIY Pest Spray Calculator</h1>
 
     <p class="intro-paragraph">
         Empower your organic gardening with this <strong>DIY calculator</strong>, which helps you easily formulate effective, chemical-free pest control sprays using <strong>common kitchen ingredients</strong> and proven natural recipes. Whether tackling aphids, slugs, or general garden pests, get precise ingredient ratios for a healthier, thriving garden.
@@ -379,6 +452,23 @@
         <p>2. <strong>Enter Total Quantity:</strong> Input the desired total volume (in milliliters) of the final spray solution you wish to prepare.</p>
         <p>3. <strong>Calculate:</strong> Click the 'Calculate Formula' button to get the exact amounts of each ingredient required.</p>
         <p>4. <strong>View Results:</strong> The calculated ingredient quantities will appear below. Refer to the 'Preparation Guide' for detailed instructions.</p>
+    </div>
+
+    <!-- New section for formula descriptions -->
+    <div class="method-descriptions">
+        <h3>Understanding Our DIY Formulas:</h3>
+        <ul>
+            <li><strong>Scavenger Destroying Plant Spray:</strong> A potent, all-purpose solution designed to deter a wide range of common garden pests, including chewing insects and some flying nuisances. Best used as a preventative measure or at the first sign of infestation.</li>
+            <li><strong>Slug, Fungus & Mosquito Spray:</strong> Specifically formulated to combat slugs, fungal issues like powdery mildew, and to deter mosquitoes from breeding in standing water. Effective for protecting vulnerable plants and reducing mosquito populations.</li>
+            <li><strong>Aphid & Thrip Spray:</strong> A targeted spray highly effective against soft-bodied insects like aphids and and thrips. The mineral oil and soap work to suffocate these pests, while garlic acts as an additional repellent. Apply directly to affected plant areas.</li>
+        </ul>
+    </div>
+
+    <!-- Always visible CTA for purchasing fertilizers -->
+    <div class="buy-cta">
+        <p><strong>Looking for our organic fertilizers?</strong></p>
+        <p>Enhance your plants' health and growth with our <strong>Rapid Grow Organic Fertilizers</strong>! Explore our full range, including <strong>Fish Emulsion, Seaweed Extract, and Fish & Seaweed Blend</strong>, on our official Shopify store:</p>
+        <p><a href="https://jcepiphany.myshopify.com/collections/rapid-grow-organic-liquid-fertilizers" target="_blank">Shop Organic Fertilizers Now</a></p>
     </div>
 
     <div class="disclaimer">
