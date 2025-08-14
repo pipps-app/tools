@@ -309,7 +309,7 @@
   </footer>
 
   <script>
-    function format(num, digits = 2) {
+  function format(num, digits = 2) {
       return (isFinite(num) ? num : 0).toFixed(digits);
     }
 
@@ -422,6 +422,30 @@
         ? '(100% of total water)'
         : '(80% of total water)';
     });
+
+    // Enable calculation on Enter key for Phase 1 and Phase 2 input fields
+    function addEnterKeyCalculation() {
+      // Phase 1: all inputs with data-phase="1"
+      document.querySelectorAll('input[data-phase="1"]').forEach(function(input) {
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            calculatePhase1();
+          }
+        });
+      });
+      // Phase 2: all inputs with data-phase="2"
+      document.querySelectorAll('input[data-phase="2"]').forEach(function(input) {
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            calculatePhase2();
+          }
+        });
+      });
+    }
+    // Run on page load
+    addEnterKeyCalculation();
   </script>
 </body>
 </html>
