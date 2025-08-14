@@ -1,0 +1,448 @@
+--- START OF FILE rapid-grow-fertilizer-calculator.html ---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapid Grow Fertilizer Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 900px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .app-logo {
+            max-height: 50px;
+            width: auto;
+            margin-bottom: 8px;
+        }
+        .app-brand {
+            font-size: 1.0em;
+            color: #555;
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: #2c3e50;
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .formula-title {
+            font-weight: bold;
+            font-size: 1.3em;
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+
+        .ingredient-label {
+            margin-top: 15px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .usage-instructions {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #e0e0e0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .quick-guide {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #333;
+        }
+        .quick-guide h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #1a73e8;
+            font-size: 1.1em;
+        }
+        .quick-guide p {
+            margin: 5px 0;
+        }
+        .quick-guide strong {
+            color: #0056b3;
+        }
+
+        /* Style for the new intro paragraph */
+        .intro-paragraph {
+            margin-top: 15px;
+            margin-bottom: 25px;
+            font-size: 1em;
+            line-height: 1.6;
+            color: #444;
+            text-align: center;
+        }
+
+        /* New style for method descriptions */
+        .method-descriptions {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .method-descriptions h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .method-descriptions ul {
+            list-style: none; /* Remove default bullet points */
+            padding: 0;
+            margin: 0;
+        }
+        .method-descriptions li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .method-descriptions li:last-child {
+            margin-bottom: 0;
+        }
+        .method-descriptions li:before {
+            content: "•"; /* Custom bullet point */
+            color: #27ae60;
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        .method-descriptions strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        select, input[type="number"] {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        input[type="number"] {
+            width: 150px; /* Adjust width for number input */
+        }
+
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .buy-cta {
+            margin-top: 30px; /* More space for a static CTA */
+            padding: 20px;
+            border: 1px solid #c8e6c9; /* Light green border */
+            background-color: #e8f5e9; /* Light green background */
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .buy-cta p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            color: #388e3c; /* Darker green for text */
+        }
+        .buy-cta p strong {
+            color: #1b5e20; /* Even darker green for strong text */
+        }
+        .buy-cta a {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #4CAF50; /* Green CTA button */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+        .buy-cta a:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            background-color: #f0f0f0;
+            border-top: 1px solid #e0e0e0;
+            border-radius: 5px;
+            color: #666;
+        }
+        footer a {
+            color: #2c3e50;
+            text-decoration: underline;
+        }
+        footer a:hover {
+            color: #1a252f;
+        }
+    </style>
+    <script>
+        function calculateFormula() {
+            var choice = parseInt(document.getElementById("formulaChoice").value);
+            var totalQuantity = parseFloat(document.getElementById("totalQuantity").value);
+
+            if (isNaN(totalQuantity) || totalQuantity < 1) {
+                alert("Attention: Please enter a valid quantity greater than or equal to 1.");
+                return;
+            }
+
+            var result;
+            switch (choice) {
+                case 1:
+                    result = formulaGeneralFertilizingLight(totalQuantity);
+                    break;
+                case 2:
+                    result = formulaGeneralFertilizingHeavy(totalQuantity);
+                    break;
+                case 3:
+                    result = formulaSoilDrench(totalQuantity);
+                    break;
+                case 4:
+                    result = formulaFoliarFeedSpray(totalQuantity);
+                    break;
+                case 5:
+                    result = formulaOrchidFertilizing(totalQuantity);
+                    break;
+                case 6:
+                    result = formulaCompostSupplement(totalQuantity);
+                    break;
+                default:
+                    alert("Invalid choice. Please choose a valid formula.");
+                    return;
+            }
+
+            displayResult(result, totalQuantity);
+        }
+
+        function formulaGeneralFertilizingLight(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(15 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "General Fertilizing (Light feeders)",
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Feed every 2-3 weeks, applying to the soil around the base of the plant."
+            };
+        }
+
+        function formulaGeneralFertilizingHeavy(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(15 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "General Fertilizing (Heavy feeders)",
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Feed every 2-3 weeks, applying to the soil around the base of the plant."
+            };
+        }
+
+        function formulaSoilDrench(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(37.5 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "Soil Drench",
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Apply directly to the roots monthly during the growing season. Ensure thorough saturation of the soil."
+            };
+        }
+
+        function formulaFoliarFeedSpray(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(15 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "Foliar Feed Spray",
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Apply by misting the leaves during evening or early morning to maximize absorption and prevent leaf burn."
+            };
+        }
+
+        function formulaOrchidFertilizing(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(2.5 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "Orchid Fertilizing",
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Apply to roots. Frequency depends on orchid type and growing medium (e.g., weekly to monthly). Always flush with plain water occasionally."
+            };
+        }
+
+        function formulaCompostSupplement(totalQuantity) {
+            var ratio = totalQuantity / 3785;
+            var fertilizer = Math.round(120 * ratio);
+            var water = totalQuantity;
+            return {
+                "Formula": "Compost Supplement",
+                "Ingredients": {"Rapid Grow Fertilizer": fertilizer, "Water": water},
+                "Units": {"Rapid Grow Fertilizer": "ml", "Water": "ml"},
+                "Usage": "Add to compost pile to act as a catalyst by aiding heating of the pile, accelerating decomposition. Mix thoroughly."
+            };
+        }
+
+        function onEnterKeyPress(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission
+                calculateFormula();
+            }
+        }
+
+        function displayResult(result, totalQuantity) {
+            var formulaTitle = "<h2 class='formula-title'>" + result["Formula"] + "</h2>";
+            var ingredientLabel = "<div class='ingredient-label'>Ingredients for " + totalQuantity.toFixed(2) + " mls:</div>";
+            var resultText = formulaTitle + ingredientLabel;
+
+            for (var ingredient in result["Ingredients"]) {
+                resultText += "<p>" + ingredient + ": <strong>" + result["Ingredients"][ingredient].toFixed(2) + " " + result["Units"][ingredient] + "</strong></p>";
+            }
+
+            var usageInstructions = "<div class='usage-instructions'><strong>Usage Instructions:</strong> " + result["Usage"] + "</div>";
+
+            document.getElementById("result").innerHTML = resultText + usageInstructions;
+        }
+    </script>
+</head>
+<body>
+
+<div class="app-header">
+    <a href="https://pipps.app" target="_blank">
+        <img src="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png"
+             alt="PIPPS Smart Apps Logo" class="app-logo">
+    </a>
+    <h2 class="app-brand">PIPPS Smart Apps Presents:</h2>
+</div>
+
+    <h1>Rapid Grow Fertilizer Calculator</h1>
+
+    <!-- Introduction Paragraph -->
+    <p class="intro-paragraph">
+        Achieve optimal plant health and vigorous growth with the <strong>Rapid Grow Fertilizer Calculator</strong>, specifically designed for our <strong>proprietary organic fertilizers</strong>. Tailor your liquid fertilizer solutions for various application methods, including soil drench, foliar feeding, and specialized formulas for orchids or compost supplementation. Ensure your plants receive precise, balanced nutrition for maximum vitality.
+    </p>
+
+    <div class="quick-guide">
+        <h3>Quick Guide:</h3>
+        <p>1. <strong>Select a Formula:</strong> Choose the desired application method from the dropdown menu.</p>
+        <p>2. <strong>Enter Quantity:</strong> Input the total volume of fertilizer solution you need to prepare (in milliliters).</p>
+        <p>3. <strong>Calculate:</strong> Click the 'Calculate' button or press Enter.</p>
+        <p>4. <strong>View Results:</strong> The required amounts of fertilizer and water, along with <strong>specific usage instructions</strong> for your chosen formula, will appear below.</p>
+    </div>
+
+    <!-- New section for method descriptions -->
+    <div class="method-descriptions">
+        <h3>Understanding Application Methods:</h3>
+        <ul>
+            <li><strong>General Fertilizing (Light/Heavy feeders):</strong> Ideal for regular feeding of most plants. Apply directly to the soil around the plant base every 2-3 weeks to promote consistent growth.</li>
+            <li><strong>Soil Drench:</strong> For deep nutrient delivery directly to the roots. Apply monthly during the growing season, ensuring the soil is thoroughly saturated.</li>
+            <li><strong>Foliar Feed Spray:</strong> Perfect for quick nutrient absorption through leaves. Mist leaves during evening or early morning to maximize uptake and avoid potential leaf burn.</li>
+            <li><strong>Orchid Fertilizing:</strong> A specialized, dilute formula designed for the sensitive root systems of orchids. Apply to roots, adjusting frequency based on orchid type and growing medium. Remember to occasionally flush with plain water.</li>
+            <li><strong>Compost Supplement:</strong> Acts as a catalyst in your compost pile, aiding in the heating process and accelerating decomposition for richer compost. Mix thoroughly into the pile.</li>
+        </ul>
+    </div>
+
+    <!-- Always visible CTA for purchasing fertilizers -->
+    <div class="buy-cta">
+        <p><strong>Looking to purchase our Rapid Grow Organic Fertilizers?</strong></p>
+        <p>Explore our full range, including <strong>Fish Emulsion, Seaweed Extract, and Fish & Seaweed Blend</strong>, on our official Shopify store:</p>
+        <p><a href="https://jcepiphany.myshopify.com/collections/rapid-grow-organic-liquid-fertilizers" target="_blank">Shop Organic Fertilizers Now</a></p>
+    </div>
+
+
+    <label for="formulaChoice">Choose a formula:</label>
+    <select id="formulaChoice">
+        <option value="1">General Fertilizing (Light feeders)</option>
+        <option value="2">General Fertilizing (Heavy feeders)</option>
+        <option value="3">Soil Drench</option>
+        <option value="4">Foliar Feed Spray</option>
+        <option value="5">Orchid Fertilizing</option>
+        <option value="6">Compost Supplement</option>
+    </select>
+
+    <br>
+
+    <label for="totalQuantity">Enter total quantity (mls):</label>
+    <input type="number" id="totalQuantity" step="any" onkeyup="onEnterKeyPress(event)" placeholder="e.g., 3785">
+
+    <br>
+
+    <button onclick="calculateFormula()">Calculate</button>
+
+    <div id="result"></div>
+
+<footer style="margin-top:40px; padding:20px; text-align:center; font-size:0.9em; background:#f0f0f0; border-top:1px solid #e0e0e0;">
+    <p><strong>More smart tools for small businesses:</strong> <a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">pipps.app</a></p>
+    <p style="color:#666;">© 2025 PIPPS Smart Apps · Built by <a href="https://pipps.app" target="_blank" style="color:#666;">JCEpiphany</a></p>
+</footer>
+
+</body>
+</html>
