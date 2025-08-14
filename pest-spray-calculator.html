@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIY Pest Spray Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1100px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .app-logo {
+            max-height: 50px;
+            width: auto;
+            margin-bottom: 8px;
+        }
+        .app-brand {
+            font-size: 1.0em;
+            color: #555;
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .formula-title {
+            color: #2c5f2d;
+            margin-bottom: 10px;
+        }
+
+        .ingredient-label {
+            margin: 10px 0;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .input-error {
+            border: 2px solid #ff4444;
+            background-color: #ffe6e6;
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        select, input {
+            padding: 6px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .disclaimer {
+            margin-top: 20px;
+            padding: 12px;
+            border: 1px dashed #ccc;
+            background-color: #fdfdfd;
+            font-size: 0.9em;
+            color: #555;
+            border-radius: 4px;
+        }
+        
+        .quick-usage-directions {
+            text-align: left;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            background-color: #f0f8ff;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #d6eaff;
+        }
+        .quick-usage-directions p {
+            margin: 3px 0;
+        }
+        .quick-usage-directions strong {
+            color: #2c3e50;
+        }
+        .intro-paragraph {
+            margin-top: 15px;
+            margin-bottom: 25px;
+            font-size: 1em;
+            line-height: 1.6;
+            color: #444;
+            text-align: center;
+        }
+
+        /* New styles for Method Descriptions */
+        .method-descriptions {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .method-descriptions h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .method-descriptions ul {
+            list-style: none; /* Remove default bullet points */
+            padding: 0;
+            margin: 0;
+        }
+        .method-descriptions li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .method-descriptions li:last-child {
+            margin-bottom: 0;
+        }
+        .method-descriptions li:before {
+            content: "•"; /* Custom bullet point */
+            color: #2c5f2d; /* Dark green for pest spray */
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        .method-descriptions strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        /* Styles for the CTA */
+        .buy-cta {
+            margin-top: 30px; /* More space for a static CTA */
+            padding: 20px;
+            border: 1px solid #c8e6c9; /* Light green border */
+            background-color: #e8f5e9; /* Light green background */
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 25px; /* Added margin-bottom to separate from next section */
+        }
+        .buy-cta p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            color: #388e3c; /* Darker green for text */
+        }
+        .buy-cta p strong {
+            color: #1b5e20; /* Even darker green for strong text */
+        }
+        .buy-cta a {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #4CAF50; /* Green CTA button */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+        .buy-cta a:hover {
+            background-color: #45a049;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            background-color: #f0f0f0;
+            border-top: 1px solid #e0e0e0;
+            border-radius: 5px;
+            color: #666;
+        }
+        footer a {
+            color: #2c3e50;
+            text-decoration: underline;
+        }
+        footer a:hover {
+            color: #1a252f;
+        }
+    </style>
+    <script>
+        function calculateFormula() {
+            const choice = parseInt(document.getElementById("formulaChoice").value);
+            const totalQuantityInput = document.getElementById("totalQuantity");
+            const totalQuantity = parseFloat(totalQuantityInput.value);
+            const errorMessage = document.getElementById("error-message");
+
+            // Reset error states
+            totalQuantityInput.classList.remove("input-error");
+            errorMessage.textContent = "";
+
+            // Validation
+            if (isNaN(totalQuantity) || totalQuantity < 1) {
+                totalQuantityInput.classList.add("input-error");
+                errorMessage.textContent = "Please enter a valid quantity (≥1 ml)";
+                return;
+            }
+
+            if (isNaN(choice) || choice < 1 || choice > 3) {
+                alert("Please select a valid formula from the dropdown");
+                return;
+            }
+
+            let result;
+            switch(choice) {
+                case 1:
+                    result = formula1(totalQuantity);
+                    break;
+                case 2:
+                    result = formula2(totalQuantity);
+                    break;
+                case 3:
+                    result = formula3(totalQuantity);
+                    break;
+                default:
+                    alert("Invalid formula selection");
+                    return;
+            }
+
+            displayResult(result, totalQuantity);
+        }
+
+        function formula1(totalQuantity) {
+            const baseLiquid = 14500 + 36.25; // Water + Soap
+            const ratio = totalQuantity / baseLiquid;
+            return {
+                "Formula": "Scavenger Destroying Plant Spray",
+                "Ingredients": {
+                    "Onion": 1160 * ratio,
+                    "Garlic": 681.5 * ratio,
+                    "Pepper": 217.5 * ratio,
+                    "Citric Acid (optional)": 166.75 * ratio,
+                    "Soap": 36.25 * ratio,
+                    "Water": 14500 * ratio
+                },
+                "Units": {
+                    "Onion": "g",
+                    "Garlic": "g",
+                    "Pepper": "g",
+                    "Citric Acid (optional)": "g",
+                    "Soap": "ml",
+                    "Water": "ml"
+                },
+                "Preparation Link": "https://jcepiphany.wixsite.com/resources/scavenger-destroying-plant-spray"
+            };
+        }
+
+        function formula2(totalQuantity) {
+            const baseLiquid = 40000 + 100; // Water + Soap
+            const ratio = totalQuantity / baseLiquid;
+            return {
+                "Formula": "Slug, Fungus & Mosquito Spray",
+                "Ingredients": {
+                    "Garlic": 1440 * ratio,
+                    "Citric Acid (optional)": 460 * ratio,
+                    "Soap": 100 * ratio,
+                    "Water": 40000 * ratio
+                },
+                "Units": {
+                    "Garlic": "g",
+                    "Citric Acid (optional)": "g",
+                    "Soap": "ml",
+                    "Water": "ml"
+                },
+                "Preparation Link": "https://jcepiphany.wixsite.com/resources/slug"
+            };
+        }
+
+        function formula3(totalQuantity) {
+            const baseLiquid = 6400 + 16 + 1600; // Water + Soap + Mineral Oil
+            const ratio = totalQuantity / baseLiquid;
+            return {
+                "Formula": "Aphid & Thrip Spray",
+                "Ingredients": {
+                    "Water": 6400 * ratio,
+                    "Garlic": 230.4 * ratio,
+                    "Citric Acid (optional)": 73.6 * ratio,
+                    "Soap": 16 * ratio,
+                    "Mineral Oil": 1600 * ratio
+                },
+                "Units": {
+                    "Water": "ml",
+                    "Garlic": "g",
+                    "Citric Acid (optional)": "g",
+                    "Soap": "ml",
+                    "Mineral Oil": "ml"
+                },
+                "Preparation Link": "https://jcepiphany.wixsite.com/resources/aphid-thrip-spray"
+            };
+        }
+
+        function displayResult(result, totalQuantity) {
+            const date = new Date().toLocaleDateString();
+            let resultHTML = `
+                <h2 class="formula-title">${result.Formula}</h2>
+                <p><strong>Calculation Date:</strong> ${date}</p>
+                <div class="ingredient-label">Ingredients for ${totalQuantity.toFixed(1)} ml:</div>
+            `;
+
+            for (const [ingredient, amount] of Object.entries(result.Ingredients)) {
+                resultHTML += `
+                    <p>${ingredient}: 
+                        <strong>${amount.toFixed(2)} ${result.Units[ingredient]}</strong>
+                    </p>
+                `;
+            }
+
+            resultHTML += `
+                <div class="links">
+                    <p><strong>Preparation Guide:</strong> 
+                        <a href="${result["Preparation Link"]}" target="_blank">View Instructions</a>
+                    </p>
+                    <p><strong>Usage Guide:</strong> 
+                        <a href="https://jcepiphany.wixsite.com/resources/usage-guide-for-plant-spray-application" target="_blank">View Usage Instructions</a>
+                    </p>
+                </div>
+            `;
+            // The CTA is now static, so it's not part of the dynamic result display.
+            document.getElementById("result").innerHTML = resultHTML;
+        }
+          
+          function printResult() {
+              const resultDiv = document.getElementById("result");
+              if (!resultDiv.innerHTML.trim()) {
+                  alert("Please calculate a formula first");
+                  return;  
+              }
+              
+              const printContent = `
+                  <html>
+                      <head>
+                          <title>Pest Control Formula Printout</title>
+                          <style>
+                              body { font-family: Arial, sans-serif; line-height: 1.6; }
+                              h1 { color: #333; border-bottom: 2px solid #999; }
+                              h2 { color: #2c5f2d; margin: 15px 0; }
+                              p { margin: 8px 0; }
+                              strong { color: #444; }
+                              a { color: #0066cc; text-decoration: none; }
+                          </style>
+                      </head>
+                      <body>
+
+<div style="text-align:center; margin-bottom: 20px;">
+    <a href="https://pipps.app" target="_blank" style="text-decoration:none;">
+        <img src="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png"
+             alt="PIPPS Smart Apps Logo"
+             style="max-height:50px; margin-bottom:8px;"><br>
+        <span style="font-size:1.1em; color:#2c3e50;">PIPPS Smart Apps</span>
+    </a>
+</div>
+
+                          <h1>DIY Pest Spray Calculator</h1>
+                          ${resultDiv.innerHTML}
+                      
+<footer style="margin-top:40px; padding:20px; text-align:center; font-size:0.9em; background:#f0f0f0; border-top:1px solid #ccc;">
+    <p style="color:#666;">© 2025 PIPPS Smart Apps</p>
+    <p><a href="https://jcepiphany.com/" target="_blank" style="color:#2c3e50; text-decoration:underline;">J.C EPiphany Home</a></p>
+    <p><a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">PIPPS Smart Apps Home</a></p>
+    <p><a href="mailto:info@pipps.app" style="color:#2c3e50; text-decoration:underline;">Email info@pipps.app</a></p>
+</footer>
+
+</body>
+                  </html>
+              `;
+              
+              const printWindow = window.open('', '_blank');
+              printWindow.document.write(printContent);
+              printWindow.document.close();
+              printWindow.print();
+          }
+
+          // Function to handle enter key press
+          function handleEnter(event) {
+            if (event.key === "Enter") {
+              calculateFormula();
+              event.preventDefault(); // Prevent form submission if inside a form
+            }
+          }
+    </script>
+</head>
+
+<body>
+
+<div style="text-align:center; margin-bottom: 20px;">
+    <a href="https://pipps.app" target="_blank" style="text-decoration:none;">
+        <img src="https://static.wixstatic.com/media/297e2c_219dd8a8a2004c38ae6baf48171cea73~mv2.png"
+             alt="PIPPS Smart Apps Logo"
+             style="max-height:50px; margin-bottom:8px;"><br>
+        <span style="font-size:1.1em; color:#2c3e50;">PIPPS Smart Apps</span>
+    </a>
+</div>
+
+    <h1>DIY Pest Spray Calculator</h1>
+
+    <p class="intro-paragraph">
+        Empower your organic gardening with this <strong>DIY calculator</strong>, which helps you easily formulate effective, chemical-free pest control sprays using <strong>common kitchen ingredients</strong> and proven natural recipes. Whether tackling aphids, slugs, or general garden pests, get precise ingredient ratios for a healthier, thriving garden.
+    </p>
+
+    <div class="quick-usage-directions">
+        <p><strong>Quick Usage Directions:</strong></p>
+        <p>1. <strong>Select a Formula:</strong> Choose the pest spray formula that best suits your needs from the dropdown menu.</p>
+        <p>2. <strong>Enter Total Quantity:</strong> Input the desired total volume (in milliliters) of the final spray solution you wish to prepare.</p>
+        <p>3. <strong>Calculate:</strong> Click the 'Calculate Formula' button to get the exact amounts of each ingredient required.</p>
+        <p>4. <strong>View Results:</strong> The calculated ingredient quantities will appear below. Refer to the 'Preparation Guide' for detailed instructions.</p>
+    </div>
+
+    <!-- New section for formula descriptions -->
+    <div class="method-descriptions">
+        <h3>Understanding Our DIY Formulas:</h3>
+        <ul>
+            <li><strong>Scavenger Destroying Plant Spray:</strong> A potent, all-purpose solution designed to deter a wide range of common garden pests, including chewing insects and some flying nuisances. Best used as a preventative measure or at the first sign of infestation.</li>
+            <li><strong>Slug, Fungus & Mosquito Spray:</strong> Specifically formulated to combat slugs, fungal issues like powdery mildew, and to deter mosquitoes from breeding in standing water. Effective for protecting vulnerable plants and reducing mosquito populations.</li>
+            <li><strong>Aphid & Thrip Spray:</strong> A targeted spray highly effective against soft-bodied insects like aphids and and thrips. The mineral oil and soap work to suffocate these pests, while garlic acts as an additional repellent. Apply directly to affected plant areas.</li>
+        </ul>
+    </div>
+
+    <!-- Always visible CTA for purchasing fertilizers -->
+    <div class="buy-cta">
+        <p><strong>Looking for our organic fertilizers?</strong></p>
+        <p>Enhance your plants' health and growth with our <strong>Rapid Grow Organic Fertilizers</strong>! Explore our full range, including <strong>Fish Emulsion, Seaweed Extract, and Fish & Seaweed Blend</strong>, on our official Shopify store:</p>
+        <p><a href="https://jcepiphany.myshopify.com/collections/rapid-grow-organic-liquid-fertilizers" target="_blank">Shop Organic Fertilizers Now</a></p>
+    </div>
+
+    <div class="disclaimer">
+        <p><strong>Disclaimer:</strong> This tool provides general guidance on organic pest control mixtures and is intended for informational purposes only. Always consult with a certified professional before applying any pest control solutions. The results may vary based on specific conditions and individual circumstances.</p>
+    </div>
+
+    <div>
+        <label for="formulaChoice">Select Formula:</label>
+        <select id="formulaChoice">
+          <option value="" disabled selected>Choose a formula</option>
+          <option value="1">Scavenger Destroying Plant Spray</option>
+          <option value="2">Slug, Fungus & Mosquito Spray</option>
+          <option value="3">Aphid & Thrip Spray</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="totalQuantity">Total Quantity Required (ml):</label>
+      <input type="number" id="totalQuantity" step="0.1" min="1" onkeydown="handleEnter(event)">
+      <div id="error-message" class="error-message"></div>
+    </div>
+
+    <div>
+      <button onclick="calculateFormula()">Calculate Formula</button>
+      <button onclick="printResult()">Print Formula</button>
+    </div>
+
+    <div id="result"></div>
+
+
+<footer style="margin-top:40px; padding:20px; text-align:center; font-size:0.9em; background:#f0f0f0; border-top:1px solid #ccc;">
+    <p style="color:#666;">© 2025 PIPPS Smart Apps</p>
+    <p><a href="https://jcepiphany.com/" target="_blank" style="color:#2c3e50; text-decoration:underline;">J.C EPiphany Home</a></p>
+    <p><a href="https://pipps.app" target="_blank" style="color:#2c3e50; text-decoration:underline;">PIPPS Smart Apps Home</a></p>
+    <p><a href="mailto:info@pipps.app" style="color:#2c3e50; text-decoration:underline;">Email info@pipps.app</a></p>
+</footer>
+
+</body>
+
+</html>
